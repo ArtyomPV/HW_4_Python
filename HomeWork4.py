@@ -41,5 +41,32 @@ def solution1():
 # собрать за один заход собирающий модуль, находясь перед некоторым кустом 
 # заданной во входном файле грядки.
 # =========================================================================================
+def solution2():
+    def fill_list(lst, size):
+        i = 1
+        while size > 0:
+            lst.append(int(input(f"Введите количество ягод {i}-го куста: ")))
+            i += 1
+            size -= 1
+        return lst
+
+    N = int(input("Введите количество кустов - "))
+    collect_bush = 3
+    max_berries = 0
+
+    berries = []
+    fill_list(berries, N)
+
+    for i in range(len(berries)):
+        sum = 0
+        for j in range(collect_bush):
+            sum += berries[j]
+        if sum > max_berries:
+            max_berries = sum
+        temp = berries.pop(0)
+        berries.append(temp)
+
+    print(max_berries)
 # =========================================================================================
-solution1()
+# solution1()
+solution2()
